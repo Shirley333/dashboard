@@ -6,35 +6,8 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import {Responsive, WidthProvider} from 'react-grid-layout';
 import Actions from '../actions/dashboardAction';
 import PanelComponent from './panelComponent';
-import sizeMe from 'react-sizeme';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
-
-function DashboardGridComponent({children, size, style, layouts, onLayoutChange, renderPanel}) {
-    return (
-        <ResponsiveReactGridLayout
-            width={size.width}
-            className="layout"
-            layouts={layouts}
-            cols={{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}
-            onLayoutChange={onLayoutChange}>
-            {renderPanel(size)}
-        </ResponsiveReactGridLayout>
-    )
-}
-
-DashboardGridComponent.propTypes = {
-    children: PropTypes.node,
-    size: PropTypes.shape({
-        width: PropTypes.number.isRequired,
-        height: PropTypes.number.isRequired,
-    }),
-    style: PropTypes.object
-}
-
-const SizedGridLayout = sizeMe({
-    monitorWidth: true,
-})(DashboardGridComponent);
 
 class DashboardComponent extends Component {
     constructor(props) {
@@ -83,14 +56,12 @@ class DashboardComponent extends Component {
             let gridPos = panels[index].gridPos;
             gridPos.i = "panel_" + index;
             layouts.push(gridPos);
-            // layouts.push(Object.assign(panels[index].gridPos, {i:}));
         }
         return layouts;
     }
 
     renderPanel() {
         const {dashboard, view} = this.props;
-        // if (!dashboard || view.panels.length == 0) {
         if (!dashboard) {
             return;
         }
@@ -100,7 +71,6 @@ class DashboardComponent extends Component {
 
         for (let index = 0; index < panels.length; index++) {
             let panel = panels[index];
-            // let option = view.panels[index].option;
             let option = this.getOption(panel);
             panelItems.push(
                 <div key={"panel_" + index}>
@@ -281,7 +251,6 @@ class DashboardComponent extends Component {
     componentDidMount() {
         const {dispatch} = this.props;
         dispatch(Actions.getDashboard(this.dashboardId));
-        // dispatch(Actions.initPanelData());
     }
 }
 

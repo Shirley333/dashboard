@@ -34,7 +34,6 @@ class EchartsItem extends Component {
 
     componentDidUpdate() {
         this.myChart.resize();
-        // this.myChart.setOption(this.props.option);
     }
 
 }

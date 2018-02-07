@@ -1,0 +1,36 @@
+{
+	"title":"dashboard1",
+	"id":1,
+	"dashboard":{
+		"panels":[
+			{
+				"id":1,
+				"gridPos":{
+					"h":9,
+					"w":12,
+					"x":0,
+					"y":0
+				},
+				"legend":{
+					"show":true
+				},
+				"mode":"line",
+				"stack":"sum",
+				"xAxis":{
+					"type":"category"
+				},
+				"yAxis":{
+					"type":"value"
+				},
+				"targets":[
+					{
+						"expr":"CPU",
+						"legendFormat":"{{target}}",
+						"refId":"A"
+						
+					}
+				]
+			}
+		]
+	}
+}
